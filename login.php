@@ -1,4 +1,30 @@
-<?php require 'inc/head.php'; ?>
+<?php require 'inc/head.php';
+
+
+if (isset($_SESSION['loginname'])) {
+    header('Location: index.php');
+    exit();
+}
+
+$errorMessage = "";
+if(!empty($_POST))
+{
+    if(!empty($_POST['loginname']))
+    {
+        $_SESSION['loginname'] = $_POST['loginname'];
+        // On redirige vers le fichier admin.php
+        header('Location: index.php');
+        exit();
+
+    }
+    else
+    {
+        $errorMessage = 'Veuillez inscrire vos identifiants svp !';
+    }
+}
+
+
+?>
 <div class="container" style="margin-top:40px">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">

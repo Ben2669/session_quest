@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,11 +48,31 @@
                             Cart
                         </a>
                     </li>
+                    <?php
+                    if (isset($_SESSION['loginname'])) {
+                        echo '<li>
+                                <a href="/logout.php" class="btn btn-warning navbar-btn">
+                                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                                    Log out
+                                </a>
+                              </li>';
+                    }
+                    ?>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
     <div class="container-fluid text-right">
-        <strong>Hello Wilder !</strong>
+        <strong>
+            <?php
+            $name = '';
+            if (isset($_SESSION['loginname'])) {
+                $name = $_SESSION['loginname'];
+            } else {
+                $name = "Wilder";
+            }
+            echo "Hello ".$name." !";
+            ?>
+        </strong>
     </div>
 </header>
