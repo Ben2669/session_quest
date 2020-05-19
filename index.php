@@ -1,5 +1,20 @@
 <?php require 'inc/data/products.php';?>
-<?php require 'inc/head.php';?>
+<?php require 'inc/head.php';
+
+if ($_POST) {
+    if (!empty($_POST['selected_cookie'])) {
+        $cookie = $_POST['selected_cookie'];
+        if (isset($_SESSION['cartCookies'])) {
+            array_push($_SESSION['cartCookies'], $cookie);
+        } else {
+            $_SESSION['cartCookies'] = [];
+            array_push($_SESSION['cartCookies'], $cookie);
+        }
+    }
+    header("Location: /cart.php");
+}
+;
+?>
 <section class="cookies container-fluid">
     <div class="row">
         <?php foreach ($catalog as $id => $cookie) { ?>
@@ -9,9 +24,12 @@
                     <figcaption class="caption">
                         <h3><?= $cookie['name']; ?></h3>
                         <p><?= $cookie['description']; ?></p>
-                        <a href="?add_to_cart=<?= $id; ?>" class="btn btn-primary">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add to cart
-                        </a>
+                        <form method="post" action="">
+                            <input type="hidden" name="selected_cookie" value="<?= $id; ?>">
+                            <button type="submit" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add to cart
+                            </button>
+                        </form>
                     </figcaption>
                 </figure>
             </div>
