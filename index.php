@@ -1,7 +1,13 @@
 <?php require 'inc/data/products.php';?>
 <?php require 'inc/head.php';
 
+
+
 if ($_POST) {
+    if(empty($_SESSION['loginname'])) {
+        header("Location: /login.php");
+        exit();
+    }
     if (!empty($_POST['selected_cookie'])) {
         $cookie = $_POST['selected_cookie'];
         if (isset($_SESSION['cartCookies'])) {
