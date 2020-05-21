@@ -11,7 +11,7 @@ if ($_POST) {
             array_push($_SESSION['cartCookies'], $cookie);
         }
     }
-    header("Location: /cart.php");
+    header("Location: /index.php");
 }
 ;
 ?>
