@@ -8,7 +8,6 @@ if(empty($_SESSION['loginname']))
     header('Location: login.php');
     exit();
 }
-var_dump($_SESSION['cartCookies']);
 ?>
 <section class="cookies container-fluid">
     <div class="row">
